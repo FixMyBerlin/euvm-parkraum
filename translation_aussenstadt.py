@@ -149,7 +149,7 @@ for feature in layer.getFeatures():
         parking = 'yes'
 
         # orientation
-        euvm_orientation = feature['Ausrichtung']
+        euvm_orientation = feature['ausrichtung']
         orientation = NULL
         if euvm_orientation == 'Längs':
             orientation = 'parallel'
@@ -162,7 +162,7 @@ for feature in layer.getFeatures():
             feature.setAttribute(idx_orientation, orientation)
 
         # capacity
-        euvm_capacity = feature['Errechnete Anzahl Parkplätze']
+        euvm_capacity = feature['anzahl_parkplaetze']
         feature.setAttribute(idx_capacity, euvm_capacity)
 
         # Parkbeschränkungen
@@ -174,8 +174,8 @@ for feature in layer.getFeatures():
 
         warnings = ''
 
-        euvm_restriction = feature['Category']
-        euvm_loading_time_interval = feature['Geltungszeit der Ladezone']
+        euvm_restriction = feature['category']
+        euvm_loading_time_interval = feature['geltungszeit_ladezone']
 
         # if euvm_restriction == 'Parken (ohne Beschränkungen)':
 
@@ -213,13 +213,8 @@ for feature in layer.getFeatures():
             feature.setAttribute(idx_maxstay, 'yes')
 
         # Straßennamen übernehmen
-        euvm_street_name = feature['Straßenname']
+        euvm_street_name = feature['strassenname']
         feature.setAttribute(idx_street_name, euvm_street_name)
-
-        # Hinweis, falls Baustelle vermerkt ist
-        euvm_construction = feature['Baustelle']
-        if euvm_construction:
-            warnings = add_warning(warnings, feature, '[#30] Baustelle im Befahrungszeitraum Innovitas 2021.', 'Warning')
 
         # Datenwarnungen für jede Fläche speichern
         if warnings:
@@ -230,7 +225,7 @@ for feature in layer.getFeatures():
         layer.updateFeature(feature)
 
 # Polygon-ID umbenennen, damit sie dem Schema der Innenstadt-Daten entspricht
-layer = processing.run('native:renametablefield', { 'INPUT' : layer, 'FIELD' : 'Polygon-ID', 'NEW_NAME' : 'polygon_id', 'OUTPUT': 'memory:'})['OUTPUT']
+layer = processing.run('native:renametablefield', { 'INPUT' : layer, 'FIELD' : 'polygonid', 'NEW_NAME' : 'polygon_id', 'OUTPUT': 'memory:'})['OUTPUT']
 
 # optional: eUVM-Attribute entfernen (außer Polygon-ID)
 if delete_euvm_attributes:
