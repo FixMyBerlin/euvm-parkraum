@@ -13,8 +13,8 @@ import processing, time
 from console.console import _console
 project_dir = os.path.dirname(_console.console.tabEditorWidget.currentWidget().path) + '/'
 
-areas_file_path = project_dir + 'inputs/parkraumdaten_innenstadt_translated.gpkg'
-ways_file_path = project_dir + 'inputs/osm_street_network_innenstadt.gpkg'
+areas_file_path = project_dir + 'data/output_parking_areas_translated_innenstadt.gpkg'
+ways_file_path = project_dir + 'data/osm_street_network_innenstadt.gpkg'
 
 unique_attribute = 'fid'
 
