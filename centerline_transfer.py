@@ -11,8 +11,8 @@ import processing, time
 from console.console import _console
 project_dir = os.path.dirname(_console.console.tabEditorWidget.currentWidget().path) + '/'
 
-areas_file_path = project_dir + 'inputs/output_parking_areas_with_side_innenstadt.gpkg'
-ways_file_path = project_dir + 'inputs/osm_street_network_innenstadt.gpkg'
+areas_file_path = project_dir + 'data/output_parking_areas_with_side_innenstadt.gpkg'
+ways_file_path = project_dir + 'data/osm_street_network_innenstadt.gpkg'
 
 # Attribute für beide Layer, die jeweils den Straßennamen enthalten
 areas_street_name_attr = 'snapped_street_name' # 'object:street'
